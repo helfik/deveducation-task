@@ -6,19 +6,22 @@ import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
+
+    val startButton = findViewById<Button>(R.id.startButton)
+    val diceGif = findViewById<ImageView>(R.id.diceGif)
+    val leftCard = findViewById<ImageView>(R.id.leftCard)
+    val rightCard = findViewById<ImageView>(R.id.rightCard)
+    internal lateinit var leftCount: TextView
+    internal lateinit  var rightCount: TextView
+    var leftScore = 0
+    var rightScore = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        val startButton = findViewById<Button>(R.id.startButton)
-        val diceGif = findViewById<ImageView>(R.id.diceGif)
-        val leftCard = findViewById<ImageView>(R.id.leftCard)
-        val rightCard = findViewById<ImageView>(R.id.rightCard)
-        val leftCount = findViewById<TextView>(R.id.leftCount)
-        val rightCount = findViewById<TextView>(R.id.rightCount)
 
         startButton.setOnClickListener {
             diceGif.visibility = View.INVISIBLE
@@ -55,11 +58,38 @@ class MainActivity : AppCompatActivity() {
             leftCard.visibility = View.VISIBLE
             rightCard.visibility = View.VISIBLE
 
-            for (i in 1..6) {
-                leftCount.text = (leftCount.text.toInt() + leftNumber).toString()
-                 rightCount.text = (rightCount.text.toInt() + rightNumber).toString()
+            if (leftNumber > rightNumber) {
+                    leftScore++
+                    leftCount.text = leftScore.toString()
+                } else if (leftNumber < rightNumber) {
+                    rightScore++
+                    rightCount.text = rightScore.toString()
+                } else {
+                    Toast.makeText(this, "The End", Toast.LENGTH_SHORT).show()
+                }
+
+            if ( leftScore >= 10 ) {
+                Toast.makeText(this, "Left gamer Win!", Toast.LENGTH_SHORT).show()
+                leftScore = 0
+                rightScore = 0
+                leftCount.text = leftScore.toString()
+                rightCount.text = rightScore.toString()
+            } else if (rightScore >= 10){
+                Toast.makeText(this, "Right Gamer Won!", Toast.LENGTH_SHORT).show()
+                leftScore = 0
+                rightScore = 0
+                leftCount.text = leftScore.toString()
+                rightCount.text = rightScore.toString()
+            } else if (leftScore==10 && rightScore==10){
+                Toast.makeText(this, "Oops, please play again", Toast.LENGTH_SHORT).show()
+                leftScore = 0
+                rightScore = 0
+                leftCount.text = leftScore.toString()
+                rightCount.text = rightScore.toString()
             }
 
         }
+
     }
+
 }
