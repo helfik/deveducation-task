@@ -6,7 +6,6 @@ import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,6 +17,8 @@ class MainActivity : AppCompatActivity() {
         val diceGif = findViewById<ImageView>(R.id.diceGif)
         val leftCard = findViewById<ImageView>(R.id.leftCard)
         val rightCard = findViewById<ImageView>(R.id.rightCard)
+        val leftCount = findViewById<TextView>(R.id.leftCount)
+        val rightCount = findViewById<TextView>(R.id.rightCount)
 
         startButton.setOnClickListener {
             diceGif.visibility = View.INVISIBLE
@@ -53,6 +54,12 @@ class MainActivity : AppCompatActivity() {
 
             leftCard.visibility = View.VISIBLE
             rightCard.visibility = View.VISIBLE
+
+            for (i in 1..6) {
+                leftCount.text = (leftCount.text.toInt() + leftNumber).toString()
+                 rightCount.text = (rightCount.text.toInt() + rightNumber).toString()
+            }
+
         }
     }
 }

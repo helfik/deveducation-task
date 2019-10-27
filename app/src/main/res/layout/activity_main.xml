@@ -52,12 +52,36 @@
         android:layout_width="250px"
         android:layout_height="250px"
         android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/startButton"
+        app:layout_constraintBottom_toBottomOf="@+id/startButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.645"
+        app:layout_constraintHorizontal_bias="0.567"
         app:layout_constraintStart_toEndOf="@+id/leftCard"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.619"
+        app:layout_constraintVertical_bias="0.545"
         app:srcCompat="@drawable/icon1" />
+
+    <TextView
+        android:id="@+id/leftCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        app:layout_constraintBottom_toTopOf="@+id/startButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.255"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/diceGif"
+        app:layout_constraintVertical_bias="0.786" />
+
+    <TextView
+        android:id="@+id/rightCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/startButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.578"
+        app:layout_constraintStart_toEndOf="@+id/leftCount"
+        app:layout_constraintTop_toBottomOf="@+id/rightCard"
+        app:layout_constraintVertical_bias="0.744"
+        tools:text="0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
