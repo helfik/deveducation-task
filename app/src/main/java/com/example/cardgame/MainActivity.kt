@@ -10,18 +10,18 @@ import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
 
-    val startButton = findViewById<Button>(R.id.startButton)
-    val diceGif = findViewById<ImageView>(R.id.diceGif)
-    val leftCard = findViewById<ImageView>(R.id.leftCard)
-    val rightCard = findViewById<ImageView>(R.id.rightCard)
-    internal lateinit var leftCount: TextView
-    internal lateinit  var rightCount: TextView
-    var leftScore = 0
-    var rightScore = 0
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val startButton = findViewById<Button>(R.id.startButton)
+        val diceGif = findViewById<ImageView>(R.id.diceGif)
+        val leftCard = findViewById<ImageView>(R.id.leftCard)
+        val rightCard = findViewById<ImageView>(R.id.rightCard)
+        var leftCount = findViewById<TextView>(R.id.leftCount)
+        var rightCount = findViewById<TextView>(R.id.rightCount)
+        var leftScore = 0
+        var rightScore = 0
 
         startButton.setOnClickListener {
             diceGif.visibility = View.INVISIBLE
@@ -64,8 +64,13 @@ class MainActivity : AppCompatActivity() {
                 } else if (leftNumber < rightNumber) {
                     rightScore++
                     rightCount.text = rightScore.toString()
+                } else if (leftNumber == rightNumber) {
+                    leftScore++
+                    rightScore++
+                    rightCount.text = rightScore.toString()
+                    leftCount.text = leftScore.toString()
                 } else {
-                    Toast.makeText(this, "The End", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Try again", Toast.LENGTH_SHORT).show()
                 }
 
             if ( leftScore >= 10 ) {
